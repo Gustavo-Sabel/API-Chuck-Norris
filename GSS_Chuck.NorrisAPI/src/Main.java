@@ -2,11 +2,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class Main {
     public static void main(String[] args) {
         try {
-            String piada = obterPiadaChuckNorris();
             // URL da API do Chuck Norris
             String apiUrl = "https://api.chucknorris.io/jokes/random";
 
@@ -23,12 +23,16 @@ public class Main {
                 resposta.append(linha);
             }
             leitor.close(); // Fecha a entrada de memoria
+
+            String piada = obterPiadaChuckNorris(resposta.toString());
+            System.out.println("Piada: " + piada);
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    private static String obterPiadaChuckNorris() throws IOException {
+    private static String obterPiadaChuckNorris(String resposta) {
         //Extraindo a piada do JSON
         int iniciodoindice = resposta.indexOf("\"value\":") + ("\"value\":".length());
         int fimdoindice = resposta.lastIndexOf("\"");
