@@ -32,6 +32,12 @@ public class Main {
         }
     }
 
+    /**
+    * Método para extrair a piada de JSON retornado pela API.
+    * @param resposta - Resposta da API no formato String.
+    * @return A piada estraida da resposta da API.
+    */
+
     private static String obterPiadaChuckNorris(String resposta) {
         //Extraindo a piada do JSON
         int iniciodoindice = resposta.indexOf("\"value\":") + ("\"value\":".length());
